@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { userGetData,userSetData } from "./useGetData";
+import { isMobile } from "react-device-detect";
 export default function Signup(){
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   const [isRevealresPwd, setIsresRevealPwd] = useState(false);
@@ -75,10 +76,10 @@ export default function Signup(){
   }
     return(
      <>
-     <div className='col-md-6 log w3-animate-left'>
+     <div className={`col-md-6 log ${isMobile ? "w3-animate-top":"w3-animate-left"}`}>
      <div className="row">
      {toast&& (<div className="alert alert-primary w3-animate-opacity" style={{marginTop:"-100px",marginLeft:"-400px"}} role="alert">
-                       <spnan className=" text-center fw-bold text-primary">User added Successfully <span className="btn-close" style={{float:"right"}} onClick={()=>{settoast(false);window.location.href();}}></span></spnan>
+                       <spnan className=" text-center fw-bold text-primary">User added Successfully <span className="btn-close" style={{float:"right"}} onClick={()=>{settoast(false)}}></span></spnan>
                    </div>)}
             <div className="col-12 topStyle">
                 <img src="./register.webp" class="col-2 img" alt="no"/>
@@ -111,7 +112,7 @@ export default function Signup(){
                  {(error.respwd&&<div className="col-md-12 text-danger text-center">{error.respwd}</div>)}
                 <p  className="text-secondary col-6 offset-3 mt-2" style={{fontSize: "10px"}}>Make sure the password contains atleast one lowercase and upper case alphabet,1 symbol and 1 special character and length ranges between 8-15
                 </p>
-                <input type="submit" className="btn col-6 mt-4 rounded-5 text-center offset-3" id="signUp" value="SignUp" onClick={regUser}/>
+                <input type="submit" className="btn col-4 mt-4 rounded-5 text-center offset-4 text-light" id="signUp" value="SignUp" onClick={regUser}/>
 
             </form>)}
     </div>

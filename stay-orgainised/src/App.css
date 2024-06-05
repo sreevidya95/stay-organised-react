@@ -30,6 +30,10 @@ body, html { overflow-x: hidden; }
     .wrapper{
     margin-left: 1.5rem !important;
     }
+    .bg{
+      margin-top: 170px !important;
+      padding-bottom: 120px !important;
+    }
     
 }
 
@@ -52,6 +56,9 @@ body, html { overflow-x: hidden; }
     float: left !important;
         margin-left: -200px !important;
     }
+    .log{
+      background-color: white;
+    }
   }
   
 body{
@@ -64,14 +71,10 @@ body{
   text-align: center;
   font-size: large;
 }
-.bg{
-  margin-top: 170px !important;
-  padding-bottom: 120px !important;
-}
-  #login,#signUp,.bg{
-    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+ .bg{
+    background-color: #84fab0;
   }
-  .navbar,footer{
+  .navbar,footer, #login,#signUp{
     background: #6777ef;
   }
   .button {
@@ -129,8 +132,8 @@ body{
     transform: scale(1.1);
     opacity:0.5;
   }
-  .topStyle{
-    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  .topStyle{ 
+    background-image: linear-gradient(120deg, #8fd3f4 0%, #84fab0 100%);
     border-radius: 0 0 30% 0;
     height:100px;
   }
