@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 import Home from './Home';
+import Signup from './SIgnup';
+import AddTodo from './AddTodo';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
@@ -11,6 +13,8 @@ root.render(
     <Routes>
       <Route path='/' element={<App/>}/>
       <Route path='/home' element={<Home/>}/>
+      <Route path='/signup' element={<Signup/>}/>
+      <Route path='/addtodo' element={<AddTodo/>}/>
     </Routes>
    </Router>
   </>

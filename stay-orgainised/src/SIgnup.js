@@ -8,11 +8,11 @@ export default function Signup(){
   const[error,seterrors]=useState({});
   const[loading,setloading]=useState(false);
   const[toast,settoast]=useState(false);
-  useEffect(()=>{
-    localStorage.removeItem("id");
-    localStorage.removeItem("name");
-    localStorage.removeItem('userName');
-  },[]);
+  // useEffect(()=>{
+  //   localStorage.removeItem("id");
+  //   localStorage.removeItem("name");
+  //   localStorage.removeItem('userName');
+  // },[]);
   function regUser(e){
     e.preventDefault();
     const newErrors = handleError(data);

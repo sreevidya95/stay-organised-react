@@ -1,8 +1,4 @@
 
-.nav-brand{
-  background-color: #4c60da;
-}
-
 .caveat-brush-regular {
   font-family: "Caveat Brush", cursive;
   font-weight: 400;
@@ -34,11 +30,52 @@ body, html { overflow-x: hidden; }
       margin-top: 170px !important;
       padding-bottom: 120px !important;
     }
+    .headLink{
+      position: relative;
+      /* margin-left: -100px !important; */
+      top:-350px;
+      left: -50px;
+      background-color: white !important;
+      cursor:default;
+    }
+    #search{
+      position: relative;
+        /* margin-right: 100px !important; */
+        right: -600px;
+        top: -25px;
+        background-color: lightgrey !important;
+        border:none !important;
+    }
+    .contDim{
+      /* margin-top:200px; */
+      height:700px;
+      width:500px;
+    }
     
 }
 
-
 @media (max-width:768px) {
+  .navbar-collapse {
+    position: fixed;
+    top: 50px; /* adjust to height of navbar */
+    left: 0;
+    width: 75%;
+    height: 100%;
+  }
+  
+  .navbar-collapse.collapsing {
+    left: -75%;
+    transition: height 0s ease;
+  }
+  
+  .navbar-collapse.show {
+    left: 0;
+    transition: left 300ms ease-in-out;
+  }
+  
+.navbar-toggler.collapsed ~ .navbar-collapse {
+    transition: left 500ms ease-in-out;
+}
   #catlist{
     height:68vh !important;
     border:none !important;
@@ -52,10 +89,6 @@ body, html { overflow-x: hidden; }
     flex-basis: auto;
     flex-wrap: wrap;
   }
-  #navmenu .dropdown-item {
-    float: left !important;
-        margin-left: -200px !important;
-    }
     .log{
       background-color: white;
     }
@@ -111,22 +144,17 @@ body{
     color:#9f6842;
     text-shadow: 5px 5px 10px #E6ADBC;
   }
-  .nav-item a, .nav-link{
-    font-size: 20px;
-    text-decoration: none;
-    float:right;
-  }
   .dropdown-item{
     color:black;
   }
   #letter{
-    color:white;
     text-align: center;
     text-decoration: none;
     font-size: 40px;
-    height: 80px;
-    width:80px;
     float:right;
+    background-color: orange;
+    border-radius: 100%;
+    margin-top:-40px !important;
   }
   #letter:hover{
     transform: scale(1.1);
@@ -143,11 +171,12 @@ body{
     margin-right:auto;
     border-radius:100%;
     height:100px;
+    width:100px;
     position: relative;
    
   }
   .img1{
-    width:300px !important;
+    width:200px !important;
     height:200px !important;
     top:-75px;
   }
@@ -210,8 +239,10 @@ iframe{
   font-size:20px;
   color:black !important;
 }
-#navLink{
-  font-weight: bold;
+#nav{
+  float: left !important;
+    background-color: white;
+    height: 100vh !important;
 }
 #navLink .nav-link:hover{
   transform: scale(1.1);
@@ -240,7 +271,7 @@ footer .h5{
 } */
 .pwd{
   position: relative;
-    margin-left: -30px !important;
+    margin-left: -20px !important;
 }
 .pwd1{
   bottom: -9px;
