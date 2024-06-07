@@ -64,7 +64,7 @@ export default function AddTodo(){
                        <form className="form" style={{marginTop: "-50px"}}>
                         <select className={`${error.cat && 'border border-danger'} form-select-sm col-8 offset-2`} id="cat" name="category" onChange={handleChange} defaultValue={null}>
                             <option className="text-secondary" value="null">Select Categeory</option>
-                            <Option url="http://localhost:8083/api/categories"/>
+                            <Option url="http://localhost:8083/api/categories" type="option"/>
                         </select>
                         {error.cat && <div className="col-8 offset-2 text-danger">{error.cat}</div>}
                         <textarea className={`${error.todo && 'border border-danger'} form-control-sm col-8 offset-2 mt-3 border border-secondary`} id="todoData" name="description" onChange={handleChange} placeholder="Enter your task"></textarea>
@@ -80,7 +80,7 @@ export default function AddTodo(){
                          {error.priority && <div id="prioError" className="col-8 offset-2 text-danger">{error.priority}</div>}
                         <select id="assign" className={`${error.assign && 'border border-danger'} col-8 offset-2 mt-3`} defaultValue={null} name="userid" onChange={handleChange}>
                             <option className="text-secondary" value={null}>Assign to</option>
-                            <Option url="http://localhost:8083/api/users"/>
+                            <Option url="http://localhost:8083/api/users" type="option"/>
                         </select>
                         {error.assign && <div id="assignError" className="col-8 offset-2 text-danger">{error.assign}</div>}
                         <input type="button" className="btn col-6 offset-3 mt-4 mb-5 text-light" id="signUp" value="Add Task" onClick={handleSubmit}/>

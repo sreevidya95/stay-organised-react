@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { userGetData } from "./useGetData";
 import { useEffect, useState } from "react";
 export function Option(props){
@@ -10,7 +11,7 @@ export function Option(props){
     },[]);
    return(
     <>
-    {cat.map(e=><option key={e.id} id={e.id} value={e.id}>{e.name}</option>)}
+    {cat.map(e=>props.type==='option' ? <option key={e.id} id={e.id} value={e.id}>{e.name}</option> :  <li><Link className="btn dropdown-item" to="#"  key={e.id} id={e.id} value={e.id}>{e.name}</Link></li>)}
     </>
    );
 }

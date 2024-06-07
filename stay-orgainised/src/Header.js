@@ -68,7 +68,7 @@ export default function Header(){
                                         <span> All Users</span>
                                     </NavLink>
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdown" id="navmenu">
-                                    <Option url="http://localhost:8083/api/categories"/>
+                                    <Option url="http://localhost:8083/api/users" type="link"/>
                                     </div>
                             </li>
                         </ul>
