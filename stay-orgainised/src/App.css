@@ -23,9 +23,6 @@ body, html { overflow-x: hidden; }
     #user{
       height:50px;
     }
-    .wrapper{
-    margin-left: 1.5rem !important;
-    }
     .bg{
       margin-top: 170px !important;
       padding-bottom: 120px !important;
@@ -38,10 +35,17 @@ body, html { overflow-x: hidden; }
       background-color: white !important;
       cursor:default;
     }
+    .data{
+      position: absolute;
+      /* margin-left: -100px !important; */
+     bottom:-390px;
+      right:-100px;
+      cursor:default;
+    }
     #search{
       position: relative;
         /* margin-right: 100px !important; */
-        right: -600px;
+        right: -400px;
         top: -25px;
         background-color: lightgrey !important;
         border:none !important;
@@ -51,6 +55,13 @@ body, html { overflow-x: hidden; }
       height:700px;
       width:500px;
     }
+    #list{
+      margin-left:10px;
+     width:37% !important;
+    }
+    /* footer{
+      margin-left:-300px !important;
+    } */
     
 }
 
@@ -96,6 +107,7 @@ body, html { overflow-x: hidden; }
   
 body{
     background-color:#ede8e8 !important;
+    height:100vh !important;
 }
 .cookie-regular {
   font-family: "Cookie", cursive;
@@ -245,6 +257,8 @@ iframe{
   float: left !important;
     background-color: white;
     height: 100vh !important;
+    position: sticky;
+    bottom: -50px;;
 }
 #navLink .nav-link:hover{
   transform: scale(1.1);
@@ -277,4 +291,16 @@ footer .h5{
 }
 .pwd1{
   bottom: -9px;
+}
+.todo{
+  height:400px !important;
+}
+tbody{
+  border: 1px solid #f3eded !important;
+    /* border-radius: 100% !important; */
+    border-radius: 50px !important;
+    margin-left: 60px;
+    /* margin-right: -1000px; */
+    /* height: 50%; */
+    width: 90% !important;
 }

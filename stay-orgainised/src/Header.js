@@ -3,7 +3,7 @@ import { NavLink ,useNavigate} from "react-router-dom";
 import { Modal,Button } from "react-bootstrap";
 import { useState} from "react";
 import { Option } from "./Option";
-export default function Header(){
+export default function Header(props){
    const[signout,setsignout]=useState(false);
    const[type,settype]=useState('');
    const navigate = useNavigate();

@@ -15,7 +15,7 @@ function App() {
   const navigate=useNavigate();
   useEffect(()=>{
     if(localStorage.getItem('name')!== undefined &&localStorage.getItem('name')!== null && localStorage.getItem('name')!== ""){
-           navigate("/Home");  
+           navigate(`/Home/${localStorage.getItem('id')}`);  
     }
   },[]);
   function handleChange(e){
@@ -43,13 +43,14 @@ function App() {
                   localStorage.setItem("id",value.id);
                   localStorage.setItem("name",value.name);
                   localStorage.setItem('userName',value.username);
+                  navigate(`/home/${localStorage.getItem('id')}`);
               }
               else{
                   sessionStorage.setItem("id",value.id);
                   sessionStorage.setItem("name",value.name);
                   sessionStorage.setItem('userName',value.username);
+                  navigate(`/home/${sessionStorage.getItem('id')}`);
               }
-              navigate("/home");
               break;
             }
             else{
