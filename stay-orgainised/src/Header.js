@@ -51,7 +51,7 @@ export default function Header(){
                             </NavLink>
                             </li>
                             <li className="nav-item col-5 ms-2 text-center">
-                                <NavLink to="/addtodo" class="nav-link text-dark">
+                                <NavLink to="/addtodo" className="nav-link text-dark">
                                 <i className='fa fa-tasks'></i>
                                 <span> New Task</span>
                                 </NavLink>

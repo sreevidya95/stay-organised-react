@@ -212,12 +212,14 @@ body{
   color:#5a5c69 !important;
   padding-top: 10px;
 }
-#cat{
+#cat,#assign,#priority{
   text-align: center;
-  margin-bottom:50px !important;
 }
 iframe{
   height:500px;
+}
+::placeholder{
+  text-align: center;
 }
 /* #catlist,#list{
   border-right:2px double black;

@@ -10,7 +10,7 @@ export function Option(props){
     },[]);
    return(
     <>
-    {cat.map(e=><option key={e.id} id={e.id} value={e.name}>{e.name}</option>)}
+    {cat.map(e=><option key={e.id} id={e.id} value={e.id}>{e.name}</option>)}
     </>
    );
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Alert from "./Alert";
 import { userGetData,userSetData } from "./useGetData";
 import { isMobile } from "react-device-detect";
 export default function Signup(){
@@ -13,6 +14,9 @@ export default function Signup(){
   //   localStorage.removeItem("name");
   //   localStorage.removeItem('userName');
   // },[]);
+  function handleAlert(){
+   settoast(false);
+  }
   function regUser(e){
     e.preventDefault();
     const newErrors = handleError(data);
@@ -78,9 +82,7 @@ export default function Signup(){
      <>
      <div className={`col-md-6 log ${isMobile ? "w3-animate-top":"w3-animate-left"}`}>
      <div className="row">
-     {toast&& (<div className="alert alert-primary w3-animate-opacity" style={{marginTop:"-100px",marginLeft:"-400px"}} role="alert">
-                       <spnan className=" text-center fw-bold text-primary">User added Successfully <span className="btn-close" style={{float:"right"}} onClick={()=>{settoast(false)}}></span></spnan>
-                   </div>)}
+     {toast&& (<Alert onClick={handleAlert} val={true}/>)}
             <div className="col-12 topStyle">
                 <img src="./register.webp" class="col-2 img" alt="no"/>
              </div>
