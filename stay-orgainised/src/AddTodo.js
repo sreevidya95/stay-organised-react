@@ -1,4 +1,4 @@
-import {useState } from "react";
+import {useRef, useState } from "react";
 import Alert from "./Alert";
 import { Link, useNavigate } from "react-router-dom";
 import { Option } from "./Option";
@@ -9,6 +9,13 @@ export default function AddTodo(){
     const[load,setload]=useState(false);
     const[alert,setalert]=useState(false);
     const navigate = useNavigate();
+    let id=useRef(0);
+    if(localStorage.getItem('id')){
+        id.current=localStorage.getItem('id');
+    }
+    else{
+        id.current=sessionStorage.getItem('id');
+    }
     function handleChange(e){
        setinput({...input,[e.target.name]:e.target.value});
     }
@@ -45,7 +52,7 @@ export default function AddTodo(){
     }
     function handleAlert(){
         setalert(false);
-        navigate("/home");
+        navigate(`/home/${id.current}`);
 
     }
     return(

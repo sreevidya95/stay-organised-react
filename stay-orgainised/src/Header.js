@@ -6,6 +6,7 @@ import { Option } from "./Option";
 export default function Header(props){
    const[signout,setsignout]=useState(false);
    const[type,settype]=useState('');
+   const[search,setsearch]=useState('');
    const navigate = useNavigate();
    function getSignout(){
     if(type==='signin'){
@@ -75,7 +76,7 @@ export default function Header(props){
                         </div>
                         <NavLink className="navbar-brand headLink col-9 rounded-4" to="#">
                             <h5 className="h5 col-2 ms-2 mt-3">Home</h5>
-                            <input type="text" id="search" className="col-4 rounded-3" placeholder=" Search here for the required todos....&#x1F50D;"/>
+                            <input type="text" id="search" className="col-4 rounded-3" placeholder=" Search here for the required todos....&#x1F50D;"  onChange={(e)=>props.handleSearch(e.target.value)}/>
                             <NavLink to="#userMenu" id="letter" className="col-1 offset-3 btn btn-success dropdown-toggle me-1" role="button" data-bs-toggle="dropdown">{(localStorage.getItem('name'))? localStorage.getItem('name').charAt(0):sessionStorage.getItem('name').charAt(0)}</NavLink>
                             <div className="dropdown-menu col-2 offset-12" id="userMenu">
                                 <NavLink className="btn dropdown-item" onClick={out}>signOut</NavLink>
