@@ -34,12 +34,10 @@ function App() {
     if(Object.keys(newErrors).length===0){
       setloading(true);
       let users=await userGetData('http://localhost:8083/api/users',"get");
-      console.log("test user",users);
       // console.log(await users.data())
         for (const [key, value] of Object.entries(users)) {
             if(value.username===data.uname && value.password===data.pwd){
               setloading(false);
-              console.log(data.remme);
               if(data.remme){
                   localStorage.setItem("id",value.id);
                   localStorage.setItem("name",value.name);
