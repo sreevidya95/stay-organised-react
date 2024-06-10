@@ -1,13 +1,20 @@
 
 import { NavLink ,useNavigate} from "react-router-dom";
 import { Modal,Button } from "react-bootstrap";
-import { useState} from "react";
+import { useState,useRef} from "react";
 import { Option } from "./Option";
 export default function Header(props){
    const[signout,setsignout]=useState(false);
    const[type,settype]=useState('');
    const[search,setsearch]=useState('');
    const navigate = useNavigate();
+   let id = useRef();
+   if(localStorage.getItem('id')){
+    id.current=localStorage.getItem('id');
+   }
+   else{
+    id.current=sessionStorage.getItem('id')
+   }
    function getSignout(){
     if(type==='signin'){
         if(localStorage.getItem('id')){
@@ -35,37 +42,37 @@ export default function Header(props){
                 <div className="collapse navbar-collapse" id="navLink">
                 
                         <ul className="nav flex-column col-9 ms-2" id="nav">
-                            <li className="nav-item disabled">
-                            <img className="col-2" src="./logo.webp" alt="no"/>
+                            <li className="nav-item">
+                            <img src="./logo.webp" className="col-2 img" alt="no"/>
                              <span className="caveat-brush-regular col-5">Listopia</span>
                             </li>
-                            <li className="nav-item col-5 ms-2 mt-5 text-center">
+                            <li className="nav-item col-5 ms-2 mt-5 text-center text-secondary">
                                 Apps
                             </li>
                             <li className="nav-item col-12  mb-5">
                                 <hr/>
                             </li>
                             <li className="nav-item col-5 ms-2 text-center">
-                            <NavLink className="nav-link text-dark" to="/home">
-                            <i className="fa fa-home"></i> 
+                            <NavLink className="nav-link text-dark" to={`/home/${id.current}`}>
+                            <i className="fa fa-home text-success"></i> 
                             <span> Home</span>
                             </NavLink>
                             </li>
                             <li className="nav-item col-5 ms-2 text-center">
                                 <NavLink to="/addtodo" className="nav-link text-dark">
-                                <i className='fa fa-tasks'></i>
+                                <i className='fa fa-tasks text-success'></i>
                                 <span> New Task</span>
                                 </NavLink>
                             </li>
                             <li className="nav-item col-5 ms-2 text-center">
                                 <NavLink to="/signup" className="nav-link text-dark">
-                                <i className='fa fa-user-plus'></i>
+                                <i className='fa fa-user-plus text-success'></i>
                                 <span>Add User</span>
                                 </NavLink>
                             </li>
                             <li className="nav-item dropdown col-5 ms-2 text-center">
                                     <NavLink className="nav-link dropdown-toggle me-2 text-dark" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                                        <i className='fa fa-users'></i>
+                                        <i className='fa fa-users text-success'></i>
                                         <span> All Users</span>
                                     </NavLink>
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdown" id="navmenu">

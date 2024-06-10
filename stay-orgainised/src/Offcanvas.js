@@ -1,7 +1,10 @@
 import { Offcanvas } from "react-bootstrap"
 import { Option } from "./Option";
-import { userGetData } from "./useGetData";
+import { userGetData,userSetData } from "./useGetData";
+import { useRef, useState } from "react";
 export default function OffCanvas(props){
+  const[task,edittask]=useState(props.data.todo);
+  let error = useRef("");
     function deleteTodo(id){
         console.log(id);
         let del = userGetData(`http://localhost:8083/api/todos/${id}`,"DELETE");
@@ -10,7 +13,32 @@ export default function OffCanvas(props){
            window.location.reload();
         });
     }
-
+    const editChange=(event)=>{
+      edittask({...task,[event.target.name]:event.target.value});
+    }
+    function submit(){
+      if(task.description===''||task.description===null){
+         error.current=" Task Description SHould not be empty";
+      }
+      else{
+          if(task.completed==='true'){
+             task.completed=true;
+          }
+          else if(task.completed==='false'){
+            task.completed=false;
+         }
+        let d = userSetData(`http://localhost:8083/api/todos/${task.id}`,"put",task);
+        d.then(data=>{
+          if(data===200){
+            alert("Edited the user Successfully");
+            window.location.reload();
+          }
+          else{
+            alert("something went wrong");
+          }
+        })
+      }
+    }
     return(
       <>
         <Offcanvas show={props.val} onHide={!props.val} placement={props.data.placement}>
@@ -52,21 +80,21 @@ export default function OffCanvas(props){
            ):(
            <form  id="form" className="form col-md-12 col-sm-6">
                 <div className="col-12 box wi">
-                <select className="form-select-sm col-8 offset-2" id="cat" name="category" defaultValue={props.data.todo.category}>
+                <select className="form-select-sm col-8 offset-2" id="cat" value={task.category} name="category" onChange={editChange}>
                             <Option url="http://localhost:8083/api/categories" type="option"/>
                         </select>
-                    <input type="text" class="form-control-sm col-8 offset-2 mt-3 border border-secondary" id="todoData" placeholder="Enter your task" style={{marginTop:"-30px !important"}} value={props.data.todo.description}/>
-                    <input id="deadline" class="form-control-sm col-8 offset-2 mt-3 border border-secondary" type="text" placeholder=" Enter Deadline" value={props.data.todo.deadline}/>
-                    <select class="form-select-sm col-8 offset-2 mt-3  border border-secondary" id="priority" placeholder="select priority" defaultValue={props.data.todo.priority}>
+                    <input type="text" class="form-control-sm col-8 offset-2 mt-3 border border-secondary" name="description" id="todoData" placeholder="Enter your task" style={{marginTop:"-30px !important"}} value={task.description} onChange={editChange}/>
+                    <input id="deadline" class="form-control-sm col-8 offset-2 mt-3 border border-secondary" type="date" placeholder=" Enter Deadline" value={task.deadline} name="deadline" onChange={editChange}/>
+                    <select class="form-select-sm col-8 offset-2 mt-3  border border-secondary" id="priority" placeholder="select priority" value={task.priority} name="priority" onChange={editChange}>
                             <option id="low" value="Low">Low</option>
                             <option id="medium" value="Medium">Medium</option>
                             <option id="high" value="High">High</option>
                     </select>
-                    <select class="form-select-sm col-8 offset-2 mt-3 border border-secondary" id="completed" defaultValue={props.data.todo.completed}>
+                    <select class="form-select-sm col-8 offset-2 mt-3 border border-secondary" id="completed" value={task.completed} name="completed" onChange={editChange}>
                         <option id="low" value={true}>Task completed</option>
                         <option id="medium" value={false}>Task Not completed</option>
                         </select>
-                    <input type="button" class="btn  btn-primary col-6 offset-3 mt-4 mb-5 text-light" id="UpdateTodo" value="update Task"/>
+                    <input type="button" class="btn  btn-primary col-6 offset-3 mt-4 mb-5 text-light" id="UpdateTodo" value="update Task" onClick={submit}/>
                 </div>
           </form>)}
         </Offcanvas.Body>

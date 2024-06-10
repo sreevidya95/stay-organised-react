@@ -1,5 +1,5 @@
-export function userGetData(url,m){
-  return fetch(url,{
+export async function userGetData(url,m){
+  return await fetch(url,{
     method:m
   }).then(response=>response.json())
 }

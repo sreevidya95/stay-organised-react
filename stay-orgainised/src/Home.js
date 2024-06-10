@@ -122,7 +122,6 @@ function reducer(state, action) {
                 </div>
          </div>
          <div className="row" style={{marginLeft:"-20px !important"}}>
-          { console.log(typeof todos)}
                 <div className="wrapper col-xl-11 rounded-4 todo">
                  {todos.length===0 ? <h3 className="h3">seems , {user.current} doesnt have any tasks</h3>
                  : (
@@ -131,33 +130,38 @@ function reducer(state, action) {
                    <table className="table table-hover table-striped">
                    <thead>
                     <tr>
+                    <th></th>
                     <th ></th>
-                    <th></th>
-                    <th></th>
-                    <Tooltip title="Add" placement="left">
-            <h1>left</h1>
-          </Tooltip>
                     <th>
-                      <Link className="dropdown-toggle me-2 text-dark" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                                    <i className="fa fa-filter fs-2"></i>
-                                    </Link>
-                                    <div className="dropdown-menu" aria-labelledby="navbarDropdown" id="navmenu">
-                                    <div className="dropdown-item dropdown-toggle" to="#" data-bs-toggle="dropdown" data-bs-target="#priority">Sort By priority</div>
-                                    <Link className="btn dropdown-item" to="#">Sort By Completed</Link>
-                                    <Link className="btn dropdown-item" to="#">Sort By category</Link>
-                                    </div>
-                      </th>
+                    <div className="dropdown">
+                        <button type="button" className="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
+                        <i className="fa fa-filter fs-2"></i>
+                        </button>
+                        <ul className="dropdown-menu">
+                          <li className="dropdown-submenu">
+                          <Link  to="#">Filter by priority</Link>
+                          <ul className="dropdown-menu">
+                          <Link className="dropdown-item" to="#">High</Link>
+                          <Link className="dropdow-item" to="#">Low</Link>
+                          <Link className="dropdown-item" to="#">Medium</Link>
+                          </ul>
+                          </li>
+                          <li><Link  to="#">Filter By Categories</Link></li>
+                          <li><Link to="#">Filter By Complete status</Link></li>
+                        </ul>
+                      </div>
+                  </th>
                     </tr>
                    </thead>
                    <tbody>
                    {todos.map(e=> 
                       <>
                       <tr key={e.id} id={e.id} className="mt-5">
-                        <td className={`${e.completed ? "text-success" : "text-dark"} text-center mt-3`}>{e.description}</td>
-                        <td className={`${e.completed ? "text-success" : "text-dark"} text-center mt-3`}>complete By: {e.deadline}</td>
-                        <td className="text-center mt-3"><i className="fa fa-info-circle" onClick={()=>dispatch({ type: "DETAILS_TODO", payload: e })}></i></td>
-                        <td className="text-center mt-3"><i className="fa fa-edit" onClick={()=>dispatch({ type: "EDIT_TODO", payload: e })}></i></td>
-                        <td className="text-center mt-3"><i className="fa fa-trash" onClick={()=>dispatch({ type: "DELETE_TODO", payload: e })}></i></td>
+                        <td className={`${e.completed ? "text-success" : e.priority==="High" ? "text-danger" : "text-dark"} text-center mt-3`}>{e.description}</td>
+                        <td className={`${e.completed ? "text-success" : e.priority==="High" ? "text-danger" : "text-dark"} text-center mt-3`}>complete By: {e.deadline}</td>
+                        <td className="text-center mt-3"><i className="fa fa-info-circle" onClick={()=>dispatch({ type: "DETAILS_TODO", payload: e })}></i>
+                        <span className="text-center mt-3 ms-3 me-3"><i className="fa fa-edit" onClick={()=>dispatch({ type: "EDIT_TODO", payload: e })}></i></span>
+                        <span className="text-center mt-3 me-3"><i className="fa fa-trash" onClick={()=>dispatch({ type: "DELETE_TODO", payload: e })}></i></span></td>
                       </tr>
                       </>
                       )}

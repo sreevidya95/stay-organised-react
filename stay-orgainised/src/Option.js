@@ -24,7 +24,7 @@ export function Option(props){
                 </div>
                 </div>
         )
-       : (props.type==='option' ? <option key={e.id} id={e.id} value={e.id}>{e.name}</option> :  <li><Link className="btn dropdown-item" to={`/home/${e.id}/${e.name}`}  key={e.id} id={e.id} value={e.id}>{e.name}</Link></li>))}
+       : (props.type==='option' ? <option key={e.id} id={e.id} value={props.url.includes('categories') ? e.name : e.id }>{e.name}</option> :  <li><Link className="btn dropdown-item" to={`/home/${e.id}/${e.name}`}  key={e.id} id={e.id} value={e.id}>{e.name}</Link></li>))}
     </>
    );
 }

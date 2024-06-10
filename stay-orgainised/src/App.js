@@ -27,15 +27,16 @@ function App() {
     }
     setdata({...data,[e.target.name]:e.target.value});
   }
-  function login(e){
+  async function login(e){
     e.preventDefault();
     const newErrors = validateForm(data);
     seterrors(newErrors);
     if(Object.keys(newErrors).length===0){
       setloading(true);
-      let users=userGetData('http://localhost:8083/api/users',"get");
-      users.then(user=>{
-        for (const [key, value] of Object.entries(user)) {
+      let users=await userGetData('http://localhost:8083/api/users',"get");
+      console.log("test user",users);
+      // console.log(await users.data())
+        for (const [key, value] of Object.entries(users)) {
             if(value.username===data.uname && value.password===data.pwd){
               setloading(false);
               console.log(data.remme);
@@ -57,9 +58,8 @@ function App() {
               seterrors({...error,uname:"Invalid user name or password"});
             }
         }
-      });
+      };
     }
-  }
   function validateForm(formdata){
     const errors = {};
     if(formdata.uname===''){
@@ -112,7 +112,7 @@ function App() {
                     <img src="./logo.webp" className="col-3 img" alt="no"/>
                       <h1 className="caveat-brush-regular display-4 ac" id="title">Listopia</h1>
                       <p  className="cookie-regular mt-3"> Listopia helps you stay organized and productive through out the day</p>
-                        <p className="col-6 offset-3 text-dark text-center fw-bold">Dont have an account?</p>
+                        <p className="col-6 offset-3 text-light text-center fw-bold">Dont have an account?</p>
                         <button value="Sign Up" onClick={()=>setSignUp(true)} className='btn rounded-5 mt-1 col-4 offset-4 button text-light fw-bold'><span>SignUp</span></button>
                     </div>
                     </div>
@@ -133,7 +133,7 @@ function App() {
                  <img src="./logo.webp" className="col-3 img" alt="no"/>
                     <h1 className="caveat-brush-regular display-4 ac" id="title">Listopia</h1>
                     <p  className="cookie-regular mt-3"> Listopia helps you stay organized and productive through out the day</p>
-                      <p className="col-6 offset-3 text-dark text-center fw-bold">Already have an account?</p>
+                      <p className="col-6 offset-3 text-light text-center fw-bold">Already have an account?</p>
                       <button value="Sign Up" onClick={()=>setSignUp(false)} className='btn rounded-5 mt-1 col-4 offset-4 button text-light fw-bold'><span>Login</span></button>
                  </div>
                  </div>
