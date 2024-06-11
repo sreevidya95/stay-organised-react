@@ -189,7 +189,7 @@ export default function Home() {
                  
                   : (
                     <>
-                      <h6 className="text-center mt-5 mb-3 h1" style={{color:"#00CED1"}}>{user.current ? `Tasks of  ${user.current}` : "Your Tasks"} </h6>
+                      <h6 className="text-center mt-5 mb-3 h1 colour">{user.current ? `Tasks of  ${user.current}` : "Your Tasks"} </h6>
                       <table className="table table-hover table-striped">
                         <thead>
                           <tr>

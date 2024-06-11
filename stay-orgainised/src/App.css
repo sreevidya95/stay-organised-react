@@ -58,11 +58,11 @@ body, html { overflow-x: hidden; }
     }
     #list{
       margin-left:10px;
-     width:37% !important;
+     width:40% !important;
     }
     footer{
       margin-left:-302px !important;
-      background-color: #00CED1;
+      background-color:#2874f0;
     }
     
 }
@@ -118,7 +118,7 @@ body{
   text-align: center;
   font-size: large;
 }
- .bg{
+ .bg,.bgcolor{
     background-color:#2874f0;
   }
   .navbar{
@@ -330,16 +330,11 @@ dropdown-menu li {
   position: relative;
   bottom:-12px;
 }
-.table-striped>tbody>tr:nth-child(odd)>td, 
-.table-striped>tbody>tr:nth-child(odd)>th {
-   background-color:#AFEEEE;
- }
+
  .colour{
-  color:#00CED1;
+  color:#2874f0;
  }
- .bgcolor{
-  background-color:#00CED1;
- }
+
  .colg{
   color:#157c06 !important;
  }

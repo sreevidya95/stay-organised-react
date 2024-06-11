@@ -52,7 +52,7 @@ export default function Header(props){
                             </li>
                             <li className="nav-item col-5 ms-2">
                             <NavLink className="nav-link text-dark" to={`/home/${id.current}`}>
-                            <i className="fa fa-home colour text-center ms-1"></i> 
+                            <i className="fa fa-home colour text-center  fs-5"></i> 
                             <span className="ms-1 fs-5"> Home</span>
                             </NavLink>
                             </li>
