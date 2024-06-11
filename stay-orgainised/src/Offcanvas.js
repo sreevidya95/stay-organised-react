@@ -6,7 +6,6 @@ export default function OffCanvas(props){
   const[task,edittask]=useState(props.data.todo);
   let error = useRef("");
     function deleteTodo(id){
-        console.log(id);
         let del = userGetData(`http://localhost:8083/api/todos/${id}`,"DELETE");
         del.then(data=>{
            alert(data.message);
@@ -43,7 +42,7 @@ export default function OffCanvas(props){
       <>
         <Offcanvas show={props.val} onHide={!props.val} placement={props.data.placement}>
         <Offcanvas.Header>
-          <Offcanvas.Title>{props.data.delete ? <h3 className="h3 text-center">Delete Task</h3> :<h3 className="h3">{props.data.edit===true ? "Edit Task" : "Details"} </h3>}</Offcanvas.Title>
+          <Offcanvas.Title>{props.data.delete ? <h3 className="h3 text-center ps-5">Delete Task</h3> :<h3 className="h3">{props.data.edit===true ? "Edit Task" : "Details"} </h3>}</Offcanvas.Title>
           <span className="btn-close" style={{float:"right !important"}} onClick={props.onClick}></span>
         </Offcanvas.Header>
         <Offcanvas.Body>

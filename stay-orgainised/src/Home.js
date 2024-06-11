@@ -11,6 +11,8 @@ import OffCanvas from "./Offcanvas";
 export default function Home(){
   const[loading,setloading]=useState(false);
   const[offcanvas,setoffcanvas]=useState(false);
+  const [cat,setcat]=useState([]);
+  const[clearFilter,setclearFilter]=useState(false);
   const initialState = {};
   let task = useRef({pt:0,ht:0,ft:0,er:0,ho:0,wt:0});
   let hi=useRef(0);
@@ -68,14 +70,33 @@ function reducer(state, action) {
     if(useId.name){
      user.current = useId.name;
     }
-     gettodos(useId.id);
+    let c=userGetData("http://localhost:8083/api/categories","get");
+        c.then(e=>{
+          setcat(e)});
+        gettodos(useId.id);
   },[useId.id])
-    const handleSearch = (search)=>{
-          let t = todos.filter(d=>d.description.toLowerCase().includes(search));
-           settodo(t);
-           if(search.length===0||search===''){
-             gettodos(useId.id)
-        }
+    const handleSearch = (search,type)=>{
+       setclearFilter(true);
+      if(type==='search'){
+        let t = todos.filter(d=>d.description.toLowerCase().includes(search));
+        settodo(t);
+        if(search.length===0||search===''){
+          gettodos(useId.id)
+       }
+      }
+      else if(type==='filter'){
+        let t=search===true ? todos.filter(d=>d.completed===true) : todos.filter(d=>d.completed===false);
+        console.log(t);
+        settodo(t);
+      }
+      else if(type==="priority"){
+         let t=todos.filter(d=>d.priority===search);
+         settodo(t);
+      }
+      else if(type==="cat"){
+          let t= todos.filter(d=>d.category===search);
+          settodo(t);
+      }
     }
    async function gettodos(id){
     setloading(true)
@@ -100,6 +121,10 @@ function reducer(state, action) {
       })
       settodo(todo);
       setloading(false);
+  }
+  function reset(){
+    setclearFilter(false);
+    gettodos(useId.id)
   }
   function handleOffcanvas(){
     setoffcanvas(false)
@@ -157,7 +182,7 @@ function reducer(state, action) {
 			            }
                 </div>
          </div>
-         <div className="row" style={{marginLeft:"-20px !important"}}>
+         <div className="row w3-animate-top" style={{marginLeft:"-20px !important"}}>
                 <div className="wrapper col-xl-11 rounded-4 todo">
                  {todos.length===0 ? <h3 className="h3">seems like {user.current} doesnt have any tasks</h3>
                  : (
@@ -169,35 +194,23 @@ function reducer(state, action) {
                     <th></th>
                     <th ></th>
                     <th>
-                    <div className="dropdown">
-                        <button type="button" className="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
-                        <i className="fa fa-filter fs-2"></i>
-                        </button>
-                        <ul className="dropdown-menu">
-                                <li class="dropdown dropend">
-                        <Link className="dropdown-item dropdown-toggle" to="#" id="multilevelDropdownMenu1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Multilevel Action 1</Link>
-                        <ul className="dropdown-menu" aria-labelledby="multilevelDropdownMenu1">
-                            <li><Link className="dropdown-item" to="#">Action</Link></li>
-                            <li className="dropdown dropend">
-                                <Link className="dropdown-item dropdown-toggle" to="#" id="multilevelDropdownMenu1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Multilevel Action 2</Link>
-                                <ul className="dropdown-menu" aria-labelledby="multilevelDropdownMenu2">
-                                    <li><Link className="dropdown-item" to="#">Action</Link></li>
-                                    <li><Link className="dropdown-item" to="#">Another action</Link></li>
-                                    <li><Link className="dropdown-item" to="#">Something else here</Link></li>
-                                </ul>
-                            </li>
-                            <li><Link className="dropdown-item" to="#">Another action</Link></li>
-                            <li><Link className="dropdown-item" to="#">Something else here</Link></li>
-                        </ul>
-                    </li>
-                          <li><Link  className="text-dark text-decoration-none" to="#">Filter By Categories &raquo;</Link></li>
-                          <li><Link className="text-dark text-decoration-none" to="#">Filter By Complete status &raquo;</Link></li>
-                         <ul className=" dropdown-menu dropdown-submenu text-dark text-decoration-none">
-                          <Link className="dropdown-item" to="#">Completed</Link>
-                          <Link className="dropdow-item" to="#">Not Completed</Link>
+                    {clearFilter &&<Link className="btn dropdown-item me-2 text-info text-decoration-underline" to="#" onClick={()=>reset()}>ClearFilter</Link>}
+                    <div className="dropdown dropend">
+                          <button type="button" className="btn btn-white dropdown-toggle" data-bs-toggle="dropdown">
+                           <i className="fa fa-filter fs-2"></i>
+                          </button>
+                          <ul className="dropdown-menu">
+                            <li><h5 className="dropdown-header h4">Sort By Priority</h5></li>
+                            <li><Link className="btn dropdown-item" to="#" onClick={()=> handleSearch("Low","priority")}>Low</Link></li>
+                            <li><Link className="btn dropdown-item" to="#" onClick={()=> handleSearch("Medium","priority")}>Medium</Link></li>
+                            <li><Link className="btn dropdown-item" to="#" onClick={()=> handleSearch("Medium","priority")}>High</Link></li>
+                            <li><h5 className="dropdown-header h4">Sort By category</h5></li>
+                            {cat.map(e=> <li><Link className="btn dropdown-item" to="#" onClick={()=> handleSearch(e.name,"cat")}>{e.name}</Link></li>)}
+                            <li><h5 className="btn dropdown-header h4">Sort by task completion</h5></li>
+                            <li><Link className="btn dropdown-item" to="#" onClick={()=> handleSearch(true,"filter")}>completed</Link></li>
+                            <li><Link className="btn dropdown-item" to="#" onClick={()=> handleSearch(false,"filter")}>Not Completed</Link></li>
                           </ul>
-                        </ul>
-                      </div>
+                        </div>
                   </th>
                     </tr>
                    </thead>
