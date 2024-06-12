@@ -7,7 +7,6 @@
   text-align:center;
   text-decoration: none;
 }
-body, html { overflow-x: hidden; }
   
   @media (min-width:1000px) {
     
@@ -70,10 +69,12 @@ body, html { overflow-x: hidden; }
 }
 
 @media (max-width:768px) {
-  #userMenu.show{
-   margin-top:-50px;
-   margin-left:-1px;
+  .m{
+    text-align: left !important;
+    font-size:10px;
+    padding-left:0;
   }
+   .container-fluid{ overflow-x: hidden; }
   .headLink{
     position: relative;
     /* margin-left: -100px !important; */

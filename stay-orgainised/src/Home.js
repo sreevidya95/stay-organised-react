@@ -8,6 +8,7 @@ import { userGetData } from "./useGetData";
 import { Link, useParams } from "react-router-dom";
 import OffCanvas from "./Offcanvas";
 import { Tooltip } from 'react-tooltip'
+import { isMobile } from "react-device-detect";
 // import { Tooltip } from "react-bootstrap";
 export default function Home() {
   const [loading, setloading] = useState(false);
@@ -140,7 +141,8 @@ export default function Home() {
     animationEnabled: true,
     title:{
       text: "task overview",
-      fontSize: 20,
+      fontSize:20,
+      fontWeight:"normal"
     },
     data: [{
       type: "pie",
@@ -149,7 +151,7 @@ export default function Home() {
       showInLegend: "true",
       legendText: "{label}",
       indexLabelFontSize: 10,
-      indexLabel: "{label} - {y}",
+      indexLabel: "{label}-{y}",
       dataPoints: [
         { y: hi.current, label: "High Priority" },
         { y: low.current, label: "Low Priority" },
@@ -170,16 +172,16 @@ export default function Home() {
           <Header handleSearch={handleSearch} />
           <div className="container  data">
             <div className="row w3-animate-zoom">
-              <h2 className="h4 mt-2 ms-1">👋 Hi, {localStorage.getItem('name') ? localStorage.getItem('name') : sessionStorage.getItem('name')} !!</h2>
+              <h2 className="h4 mt-2 ms-1 col-10">👋 Hi, {localStorage.getItem('name') ? localStorage.getItem('name') : sessionStorage.getItem('name')} !!</h2>
             </div>
             <div className="row" style={{ marginLeft: "-20px !important" }}>
-              <div className="wrapper col-xl-6 col-md-6 rounded-5">
-              <h5 className="col-12 h6 text-center mt-2">Number of tasks for each category</h5>
+              <div className="wrapper col-xl-6 col-md-6  col-12 rounded-5">
+              <h5 className="col-10 h6 fw-bold text-center mt-2">Number of tasks for each category</h5>
                 <div className="row mb-3" id="categories">
                   <Option url="http://localhost:8083/api/categories" type="card" task={task.current} />
                 </div>
               </div>
-              <div className="wrapper col-xl-5 rounded-5 col-md-5" id="list">
+              <div className="wrapper col-xl-5 rounded-5 col-md-5 col-12" id="list">
                 {todos.length === 0 ? "No tasks to show graph" :
                   <div>
                     <CanvasJSChart options={options}
@@ -191,7 +193,7 @@ export default function Home() {
               </div>
             </div>
             <div className="row" style={{ marginLeft: "-20px !important" }}>
-              <div className="wrapper col-xl-11 rounded-5 todo">
+              <div className="wrapper col-xl-11 col-12 rounded-5 todo">
                 {todos.length === 0 ? <>
                        <h3 className="h3">seems like {user.current} doesnt have any tasks</h3>
                        {clearFilter && <Link className="btn dropdown-item me-2 text-info text-decoration-underline" to="#" onClick={() => reset()}>ClearFilter</Link>}
@@ -232,12 +234,12 @@ export default function Home() {
                         <tbody>
                           {todos.map(e =>
                             <>
-                              <tr key={e.id} id={e.id} className="mt-5">
+                              <tr key={e.id} id={e.id} className="mt-5 col-12">
                                 <td className={`${e.completed ? "colg" : e.priority === "High" ? "text-danger" : "text-dark"} text-center mt-3`}>{e.description}</td>
                                 <td className={`${e.completed ? "colg" : e.priority === "High" ? "text-danger" : "text-dark"} text-center mt-3`}>complete By: {e.deadline}</td>
-                                <td className="text-center mt-3"><i className="fa fa-info-circle" onClick={() => dispatch({ type: "DETAILS_TODO", payload: e })}></i>
-                                  <span className="text-center mt-3 ms-3 me-3"><i className="fa fa-edit" onClick={() => dispatch({ type: "EDIT_TODO", payload: e })}></i></span>
-                                  <span className="text-center mt-3 me-3"><i className="fa fa-trash" onClick={() => dispatch({ type: "DELETE_TODO", payload: e })}></i></span></td>
+                                <td className="text-center mt-3"><i className="fa fa-info-circle col-1" onClick={() => dispatch({ type: "DETAILS_TODO", payload: e })}></i>
+                                  <span className="text-center mt-3 ms-3 me-3"><i className="fa fa-edit col-1" onClick={() => dispatch({ type: "EDIT_TODO", payload: e })}></i></span>
+                                  <span className="text-center mt-3 me-3"><i className="fa fa-trash col-1" onClick={() => dispatch({ type: "DELETE_TODO", payload: e })}></i></span></td>
                               </tr>
                             </>
                           )}
