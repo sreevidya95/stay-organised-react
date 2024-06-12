@@ -16,13 +16,7 @@ function App() {
   useEffect(()=>{
     if(window.location.pathname.includes("signup")){
       handleSignUp();
-    }
-    else{
-      if(localStorage.getItem('name')!== undefined &&localStorage.getItem('name')!== null && localStorage.getItem('name')!== ""){
-        navigate(`/Home/${localStorage.getItem('id')}`);  
-    }
-         
-    }
+    }  
   },[]);
   function handleSignUp(){
     setSignUp(true);
@@ -77,6 +71,7 @@ function App() {
               break;
             }
             else{
+              setloading(false);
               seterrors({...error,uname:"Invalid user name or password"});
             }
         }
@@ -97,16 +92,16 @@ function App() {
       <header>
       </header>
       <main>
-        {loading && (<div className="d-flex justify-content-center">
-            <div className="spinner-border" style={{height:"100px",width:"100px",marginTop:"70px"}} role="status">
-              <span className="sr-only">Loading...</span>
-            </div>
-          </div>)}
          {signIn ? (<div className="container">
             <div className="row">
                  <div className={`col-md-6 log ${isMobile ? "w3-animate-bottom":"w3-animate-right"}`}>
                  <div className="row">
                  <h2 class="display-4 text-center mt-5 dancing-script">Welcome Back!!</h2>
+                 {loading && (<div className="d-flex justify-content-center">
+                          <div className="spinner-border" style={{height:"100px",width:"100px",marginTop:"70px"}} role="status">
+                            <span className="sr-only">Loading...</span>
+                          </div>
+                        </div>)}
                             <form className="form" onSubmit={login}>
                             <div className="input-group col-8 offset-4 mt-5 tranb">
                                 <span className="input-group-text border border-dark"><i className="fa fa-user"></i></span>
@@ -115,7 +110,7 @@ function App() {
                             </div>
                             <div class="input-group mt-4 col-8 offset-4 tranb">
                                 <span className="input-group-text border border-dark"><i className="fa fa-lock"></i></span>
-                                <input id="name" name="pwd" value={data.pwd} onChange={handleChange} type={(pwdreveal)?"text":"password"} className="form-control-sm" placeholder="Enter your password"/>
+                                <input id="name" name="pwd" value={data.pwd} onChange={handleChange} type={(pwdreveal)?"text":"password"} className="form-control-sm" placeholder="Enter password"/>
                                 {(pwdreveal)?<i className="fa fa-eye pwd pwd1" aria-hidden="true" onClick={()=>setPwdreveal(false)}></i>:<i className="fa fa-eye-slash pwd pwd1" aria-hidden="true" onClick={()=>setPwdreveal(true)}></i>}
                                 {error.pwd && <span className="text-danger col-md-12">{error.pwd}</span>}
                             </div>

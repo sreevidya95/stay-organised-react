@@ -6,16 +6,18 @@ import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 import Home from './Home';
 import Signup from './SIgnup';
 import AddTodo from './AddTodo';
+import Landing from './landing';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
    <Router>
     <Routes>
-      <Route path='/' element={<App/>}/>
+      <Route path='/login' element={<App/>}/>
       <Route path='/home/:id' element={<Home/>}/>
       <Route path='/home/:id/:name' element={<Home/>}/>
       <Route path='/signup' element={<App/>}/>
       <Route path='/addtodo' element={<AddTodo/>}/>
+      <Route path='/' element={<Landing/>}/>
     </Routes>
    </Router>
   </>
