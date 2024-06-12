@@ -153,11 +153,11 @@ export default function Home() {
       indexLabelFontSize: 10,
       indexLabel: "{label}-{y}",
       dataPoints: [
-        { y: hi.current, label: "High Priority" },
-        { y: low.current, label: "Low Priority" },
-        { y: med.current, label: "Medium Priority" },
-        { y: com.current, label: "Completed Tasks" },
-        { y: notcom.current, label: "Not Completed Tasks" }
+        { y: hi.current, label: "High Priority"},
+        { y: low.current, label: "Low Priority"},
+        { y: med.current, label: "Medium Priority"},
+        { y: com.current, label: "Completed Tasks"},
+        { y: notcom.current, label: "Not Completed Tasks"}
       ]
     }]
   };

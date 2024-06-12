@@ -91,7 +91,7 @@ export default function Header(props){
                               {(localStorage.getItem('name'))? localStorage.getItem('name').charAt(0):sessionStorage.getItem('name').charAt(0)}
                                 </NavLink>
                             <div className="dropdown-menu col-2 offset-12" id="userMenu">
-                                <NavLink className="btn dropdown-item bg-white text-dark text-center m" onClick={out}>SignOut</NavLink>
+                                <NavLink className="btn dropdown-item bg-white text-dark text-center m" onClick={out}>Signout</NavLink>
                                 <NavLink className="btn dropdown-item bg-white text-dark text-center m" onClick={del}>Delete Account</NavLink>
                             </div>
                             </NavLink>
