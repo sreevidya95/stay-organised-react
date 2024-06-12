@@ -10,10 +10,10 @@ export default function Footer(){
         <div className="col-xl-4 mt-3">
          <h5 className="h5 col-12 text-center"><u>Our Products</u></h5>
          <p className="text-center">
-         <Link className="col-12 mt-2 text-white" to="mailto:info@listopia.com">ContactUS</Link><br/>
-         <Link className="col-12 mt-2 text-white" href="https://www.lipsum.com/">Our Blog</Link><br/>
-         <Link className="col-12 mt-2 text-white" href="https://www.lipsum.com/">Our Products</Link><br/>
-         <Link class="col-12 mt-2 text-white" href="https://www.lipsum.com/">Help</Link><br/></p>
+         <Link className="col-12 mt-2 text-white" to="mailto:info@listopia.com" target="_newtab">ContactUS</Link><br/>
+         <Link className="col-12 mt-2 text-white" to="https://www.lipsum.com/">Our Blog</Link><br/>
+         <Link className="col-12 mt-2 text-white" to="https://www.lipsum.com/">Our Products</Link><br/>
+         <Link class="col-12 mt-2 text-white" to="https://www.lipsum.com/">Help</Link><br/></p>
         </div>
         <div className="col-xl-4 mt-3">
          <h5 className="h5 col-12 text-center"><u>Our Location</u></h5>

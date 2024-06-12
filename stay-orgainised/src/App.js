@@ -135,7 +135,7 @@ function App() {
                       <h1 className="caveat-brush-regular display-4 ac" id="title">Listopia</h1>
                       <p  className="cookie-regular mt-3"> Listopia helps you stay organized and productive through out the day</p>
                         <p className="col-6 offset-3 text-light text-center fw-bold">Dont have an account?</p>
-                        <button value="Sign Up" onClick={()=>handleSignUp()} className='btn rounded-5 mt-1 col-4 offset-4 button text-light fw-bold'><span>SignUp</span></button>
+                        <button value="Sign Up" onClick={()=>handleSignUp()} className='btn rounded-5 mt-1 col-4 offset-4 button text-light fw-bold mb-1'><span>SignUp</span></button>
                     </div>
                     </div>
             </div>
@@ -156,7 +156,7 @@ function App() {
                     <h1 className="caveat-brush-regular display-4 ac" id="title">Listopia</h1>
                     <p  className="cookie-regular mt-3"> Listopia helps you stay organized and productive through out the day</p>
                       <p className="col-6 offset-3 text-light text-center fw-bold">Already have an account?</p>
-                      <button value="Sign Up" onClick={()=>getSignInPage()} className='btn rounded-5 mt-1 col-4 offset-4 button text-light fw-bold'><span>Login</span></button>
+                      <button value="Sign Up" onClick={()=>getSignInPage()} className='btn rounded-5 mt-1 col-4 offset-4 button text-light fw-bold mb-1'><span>Login</span></button>
                  </div>
                  </div>
                 <Signup getSignInPage={getSignInPage}/>

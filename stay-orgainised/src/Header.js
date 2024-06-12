@@ -55,25 +55,25 @@ export default function Header(props){
                             <li className="nav-item col-12  mb-5">
                                 <hr/>
                             </li>
-                            <li className="nav-item col-5 ms-2">
+                            <li className="nav-item col-12 ms-2">
                             <NavLink className="nav-link text-dark" to={`/home/${id.current}`}>
-                            <i className="fa fa-home colour text-center  fs-5"></i> 
+                            <i className="fa fa-home colour text-center fs-5"></i> 
                             <span className="ms-1 fs-5"> Home</span>
                             </NavLink>
                             </li>
-                            <li className="nav-item col-6 ms-2 text-center">
+                            <li className="nav-item col-12 ms-2">
                                 <NavLink to="/addtodo" className="nav-link text-dark h4">
-                                <i className='fa fa-tasks colour'></i>
+                                <i className='fa fa-tasks colour fs-5'></i>
                                 <span className="ms-1 fs-5"> New Task</span>
                                 </NavLink>
                             </li>
-                            <li className="nav-item col-6 ms-1 text-center">
+                            <li className="nav-item col-12 ms-2">
                                 <NavLink to="/signup" className="nav-link text-dark h4">
                                 <i className='fa fa-user-plus colour'></i>
                                 <span className="ms-2 fs-5">Add User</span>
                                 </NavLink>
                             </li>
-                            <li className="nav-item dropdown col-6 ms-2 text-center">
+                            <li className="nav-item dropdown col-12 ms-2">
                                     <NavLink className="nav-link dropdown-toggle me-2 text-dark h4" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
                                         <i className='fa fa-users colour'></i>
                                         <span className="ms-1 fs-5"> All Users</span>
@@ -86,13 +86,13 @@ export default function Header(props){
                         </div>
                         <NavLink className="navbar-brand headLink col-9 rounded-4" to="#">
                             <h5 className="h4 col-2 ms-2 mt-3 fw-bold">Home</h5>
-                            <input type="text" id="search" className="col-4 rounded-3" placeholder=" Search for the tasks here....&#x1F50D;"  onChange={(e)=>props.handleSearch(e.target.value,"search")}/>
+                            <input type="text" id="search" className="col-4 rounded-3 ms-2" placeholder=" Search for the tasks here....&#x1F50D;"  onChange={(e)=>props.handleSearch(e.target.value,"search")}/>
                             <NavLink to="#userMenu" id="letter" className="col-2 offset-3 dropdown-toggle me-1 text-dark mt-5 initial h4 bgcolor" role="button" data-bs-toggle="dropdown">
                               {(localStorage.getItem('name'))? localStorage.getItem('name').charAt(0):sessionStorage.getItem('name').charAt(0)}
                                 </NavLink>
                             <div className="dropdown-menu col-2 offset-12" id="userMenu">
-                                <NavLink className="btn dropdown-item bg-white text-dark" onClick={out}>signOut</NavLink>
-                                <NavLink className="btn dropdown-item bg-white text-dark" onClick={del}>Delete Account</NavLink>
+                                <NavLink className="btn dropdown-item bg-white text-dark text-center m" onClick={out}>SignOut</NavLink>
+                                <NavLink className="btn dropdown-item bg-white text-dark text-center m" onClick={del}>Delete Account</NavLink>
                             </div>
                             </NavLink>
                         </nav>

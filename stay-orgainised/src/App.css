@@ -62,18 +62,34 @@ body, html { overflow-x: hidden; }
     }
     footer{
       margin-left:-302px !important;
-      background-color:#2874f0;
+    }
+    .navbar{
+      background-color:#dbe0e4;
     }
     
 }
 
 @media (max-width:768px) {
+  #userMenu.show{
+   margin-top:-50px;
+   margin-left:-1px;
+  }
+  .headLink{
+    position: relative;
+    /* margin-left: -100px !important; */
+    left: -20px;
+    background-color: white !important;
+  }
   .navbar-collapse {
     position: fixed;
     top: 50px; /* adjust to height of navbar */
     left: 0;
     width: 75%;
     height: 100%;
+  }
+  #search{
+      position: relative;
+      width: 80% !important;
   }
   
   .navbar-collapse.collapsing {
@@ -84,8 +100,12 @@ body, html { overflow-x: hidden; }
   .navbar-collapse.show {
     left: 0;
     transition: left 300ms ease-in-out;
+    z-index:1;
   }
-  
+.navbar-toggler{
+  margin-left: 15px;
+  padding: 5px;
+}
 .navbar-toggler.collapsed ~ .navbar-collapse {
     transition: left 500ms ease-in-out;
 }
@@ -121,9 +141,6 @@ body{
  .bg,.bgcolor{
     background-color:#2874f0;
   }
-  .navbar{
-    background: #dbe0e4;
-  }
   #login,#signUp{
     background: #fb641b;
   }
@@ -136,9 +153,9 @@ body{
     transition: all 0.5s;
     cursor: pointer;
   }
-  .button:hover,#login:hover{
+  .button:hover,#login:hover,#signUp:hover{
     background-color:#fb641b;
-    opacity: 0.6;
+    transform:scale(1.1);
   }
   input[type='checkbox'],.btn-close{
     cursor: pointer;
@@ -175,7 +192,7 @@ body{
     width:50px;
 
   }
-  #letter:hover{
+  #letter:hover,.m:hover{
     transform: scale(1.1);
   }
   /* .topStyle{ 
@@ -272,6 +289,7 @@ iframe{
 }
 footer{
   width:100vw;
+  background-color:#2874f0;
 }
 footer .h5{
  background-color:#dbe0e4;

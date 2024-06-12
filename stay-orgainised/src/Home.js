@@ -83,6 +83,7 @@ export default function Home() {
   const handleSearch = (search, type) => {
     if (type === 'search') {
       let t = todos.filter(d => d.description.toLowerCase().includes(search));
+      settodo(t);
       if (search.length === 0 || search === '') {
         gettodos(useId.id)
       }
@@ -173,6 +174,7 @@ export default function Home() {
             </div>
             <div className="row" style={{ marginLeft: "-20px !important" }}>
               <div className="wrapper col-xl-6 col-md-6 rounded-5">
+              <h5 className="col-12 h6 text-center mt-2">Number of tasks for each category</h5>
                 <div className="row mb-3" id="categories">
                   <Option url="http://localhost:8083/api/categories" type="card" task={task.current} />
                 </div>
