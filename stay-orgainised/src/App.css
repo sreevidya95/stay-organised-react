@@ -140,7 +140,7 @@ body{
     background-color:#fb641b;
     opacity: 0.6;
   }
-  input[type='checkbox']{
+  input[type='checkbox'],.btn-close{
     cursor: pointer;
   }
   .ac{
@@ -338,3 +338,4 @@ dropdown-menu li {
  .colg{
   color:#157c06 !important;
  }
+ 

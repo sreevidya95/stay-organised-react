@@ -32,6 +32,7 @@ export default function Home() {
           ...state,
           todo: action.payload,
           edit: true,
+          delete:false,
           placement: "end"
         }
       }
@@ -40,6 +41,7 @@ export default function Home() {
           ...state,
           todo: action.payload,
           delete: true,
+          edit:false,
           placement: "top"
         }
       }
@@ -49,6 +51,7 @@ export default function Home() {
           ...state,
           todo: action.payload,
           edit: false,
+          delete:false,
           placement: "end"
         }
       default:
@@ -80,7 +83,6 @@ export default function Home() {
   const handleSearch = (search, type) => {
     if (type === 'search') {
       let t = todos.filter(d => d.description.toLowerCase().includes(search));
-      settodo(t);
       if (search.length === 0 || search === '') {
         gettodos(useId.id)
       }
@@ -88,7 +90,6 @@ export default function Home() {
     else if (type === 'filter') {
       setclearFilter(true);
       let t = search === true ? todos.filter(d => d.completed === true) : todos.filter(d => d.completed === false);
-      console.log(t);
       settodo(t);
     }
     else if (type === "priority") {
@@ -136,6 +137,10 @@ export default function Home() {
   options = {
     exportEnabled: true,
     animationEnabled: true,
+    title:{
+      text: "task overview",
+      fontSize: 20,
+    },
     data: [{
       type: "pie",
       startAngle: 75,
@@ -167,12 +172,12 @@ export default function Home() {
               <h2 className="h4 mt-2 ms-1">👋 Hi, {localStorage.getItem('name') ? localStorage.getItem('name') : sessionStorage.getItem('name')} !!</h2>
             </div>
             <div className="row" style={{ marginLeft: "-20px !important" }}>
-              <div className="wrapper col-xl-6 col-md-6 rounded-5 w3-animate-left">
+              <div className="wrapper col-xl-6 col-md-6 rounded-5">
                 <div className="row mb-3" id="categories">
                   <Option url="http://localhost:8083/api/categories" type="card" task={task.current} />
                 </div>
               </div>
-              <div className="wrapper col-xl-5 rounded-5 col-md-5 w3-animate-right" id="list">
+              <div className="wrapper col-xl-5 rounded-5 col-md-5" id="list">
                 {todos.length === 0 ? "No tasks to show graph" :
                   <div>
                     <CanvasJSChart options={options}
@@ -183,7 +188,7 @@ export default function Home() {
                 }
               </div>
             </div>
-            <div className="row w3-animate-top" style={{ marginLeft: "-20px !important" }}>
+            <div className="row" style={{ marginLeft: "-20px !important" }}>
               <div className="wrapper col-xl-11 rounded-5 todo">
                 {todos.length === 0 ? <>
                        <h3 className="h3">seems like {user.current} doesnt have any tasks</h3>
@@ -193,7 +198,7 @@ export default function Home() {
                   : (
                     <>
                       <h6 className="text-center mt-5 mb-3 h1 colour">{user.current ? `Tasks of  ${user.current}` : "Your Tasks"} </h6>
-                      <table className="table table-hover table-striped">
+                      <table className="table table-hover table-striped w3-animate-top">
                         <thead>
                           <tr>
                             <th></th>

@@ -88,7 +88,7 @@ export default function Signup(props) {
         <div className="row">
           {toast && (<Alert onClick={handleAlert} val={true} message="User added Successfully"/>)}
           <div className="col-12 topStyle">
-            <img src="./register.webp" class="col-2 img" alt="no" />
+          <h2 class="display-4 text-center mt-5 dancing-script">New User</h2>
           </div>
         </div>
         {(loading ? <div className="d-flex justify-content-center">

@@ -3,15 +3,13 @@ import { Option } from "./Option";
 import { userGetData, userSetData } from "./useGetData";
 import { useRef, useState } from "react";
 export default function OffCanvas(props) {
-  console.log('on edit click', props, props.data.todo)
   const [task, edittask] = useState(props.data.todo);
-
   let error = useRef("");
 
   function deleteTodo(id) {
     let del = userGetData(`http://localhost:8083/api/todos/${id}`, "DELETE");
     del.then(data => {
-      alert(data.message);
+      alert("Deleted the task Successfully");
       window.location.reload();
     });
   }
@@ -34,7 +32,7 @@ export default function OffCanvas(props) {
       let d = userSetData(`http://localhost:8083/api/todos/${task.id}`, "put", task);
       d.then(data => {
         if (data === 200) {
-          alert("Edited the user Successfully");
+          alert("Edited the task Successfully");
           window.location.reload();
         }
         else {
@@ -48,7 +46,7 @@ export default function OffCanvas(props) {
     <>
       <Offcanvas show={props.val} onHide={!props.val} placement={props.data.placement}>
         <Offcanvas.Header>
-          <Offcanvas.Title>{props.data.delete ? <h3 className="h3 text-center ps-5">Delete Task</h3> : <h3 className="h3">{props.data.edit === true ? "Edit Task" : "Details"} </h3>}</Offcanvas.Title>
+          <Offcanvas.Title>{props.data.delete ? <h3 className="h3 text-center" style={{marginLeft:"600px"}}>Delete Task</h3> : <h3 className="h3">{props.data.edit === true ? "Edit Task" : "Details"} </h3>}</Offcanvas.Title>
           <span className="btn-close" style={{ float: "right !important" }} onClick={props.onClick}></span>
         </Offcanvas.Header>
         <Offcanvas.Body>

@@ -66,7 +66,7 @@ export default function AddTodo() {
                                 <span className="sr-only">Loading...</span>
                             </div>
                         </div>)}
-                        {alert && (<Alert onClick={handleAlert} val={false} />)}
+                        {alert && (<Alert onClick={handleAlert} val={false} message="Task Added Successfully"/>)}
                         <img src="./todo.png" alt="no" className="img1 mt-5" />
                         <form className="form" style={{ marginTop: "-50px" }}>
                             <select className={`${error.cat && 'border border-danger'} form-select-sm col-8 offset-2`} id="cat" name="category" onChange={handleChange} defaultValue={null}>
@@ -91,7 +91,7 @@ export default function AddTodo() {
                             </select>
                             {error.assign && <div id="assignError" className="col-8 offset-2 text-danger">{error.assign}</div>}
                             <input type="button" className="btn col-6 offset-3 mt-4 mb-5 text-light" id="signUp" value="Add Task" onClick={handleSubmit} />
-                            <div className="col-8 offset-2 mb-3">Don't Want to add a task? <Link to="/home">Go to Home</Link></div>
+                            <div className="col-8 offset-2 mb-3">Don't Want to add a task? <Link to={`/home/${id.current}`}>Go to Home</Link></div>
                         </form>
                     </div>
                 </div>

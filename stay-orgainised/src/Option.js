@@ -18,7 +18,7 @@ export function Option(props) {
                 (
                     <div className="col-md-6 col-xl-6" key={e.id}>
                         <div className="card mt-5 mb-2">
-                            <div className="card-body">
+                            <div className="card-body  w3-animate-left">
                                 <div className="card-title" style={{float:"right",marginTop:"-40px"}}>
                                    {task && e.name === "Personal Task" ? <i className="fa fa-user-circle-o fs-1 text-white bgcolor p-1" style={{cursor:"default"}}></i> : e.name === "Household Task" ?
                                         <i className="fa fa-home  fs-1 text-white bgcolor p-1" aria-hidden="true" style={{cursor:"default"}}></i> : e.name === "Financial Task" ? 
