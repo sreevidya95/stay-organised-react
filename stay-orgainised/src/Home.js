@@ -181,8 +181,8 @@ export default function Home() {
                   <Option url="http://localhost:8083/api/categories" type="card" task={task.current} />
                 </div>
               </div>
-              <div className="wrapper col-xl-5 rounded-5 col-md-5 col-12" id="list">
-                {todos.length === 0 ? "No tasks to show graph" :
+              <div className="wrapper col-xl-5 rounded-5 col-md-5 col-12 text-center" id="list">
+                {todos.length === 0 ? "No tasks to show chart" :
                   <div>
                     <CanvasJSChart options={options}
                     /* onRef = {ref => this.chart = ref} */

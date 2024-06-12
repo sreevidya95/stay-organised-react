@@ -28,7 +28,7 @@
     .headLink{
       position: relative;
       /* margin-left: -100px !important; */
-      top:-360px;
+      top:-430px;
       left: -50px;
       background-color: white !important;
       cursor:default;
@@ -280,7 +280,7 @@ iframe{
 #nav{
   float: left !important;
     background-color: white;
-    height: 100vh !important;
+    height: 960px;
     position: sticky;
     bottom: -50px;;
 }
