@@ -115,7 +115,7 @@ function App() {
                                 {error.pwd && <span className="text-danger col-md-12">{error.pwd}</span>}
                             </div>
                             <div className="row mt-4">
-                                <div className="form-check col-4 offset-4">
+                                <div className="form-check col-6 offset-4">
                                     <input type="checkbox" name="remme" value={data.remme} onChange={handleChange} className="form-check-input border-dark" id="remMe"/>
                                     <label className="form-check-label">Remember ME</label>
                                 </div>
