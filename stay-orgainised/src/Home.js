@@ -8,7 +8,7 @@ import { userGetData } from "./useGetData";
 import { Link, useParams } from "react-router-dom";
 import OffCanvas from "./Offcanvas";
 import { Tooltip } from 'react-tooltip'
-import { isMobile } from "react-device-detect";
+import { Modal } from "react-bootstrap";
 // import { Tooltip } from "react-bootstrap";
 export default function Home() {
   const [loading, setloading] = useState(false);

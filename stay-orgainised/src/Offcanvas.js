@@ -2,15 +2,15 @@ import { Offcanvas } from "react-bootstrap"
 import { Option } from "./Option";
 import { userGetData, userSetData } from "./useGetData";
 import { useRef, useState } from "react";
+import Toast from "./Toast";
 export default function OffCanvas(props) {
   const [task, edittask] = useState(props.data.todo);
+  const[toast,setToast]=useState(false);
   let error = useRef("");
-
   function deleteTodo(id) {
     let del = userGetData(`http://localhost:8083/api/todos/${id}`, "DELETE");
     del.then(data => {
-      alert("Deleted the task Successfully");
-      window.location.reload();
+      setToast(true);
     });
   }
 
@@ -32,8 +32,7 @@ export default function OffCanvas(props) {
       let d = userSetData(`http://localhost:8083/api/todos/${task.id}`, "put", task);
       d.then(data => {
         if (data === 200) {
-          alert("Edited the task Successfully");
-          window.location.reload();
+          setToast(true);
         }
         else {
           alert("something went wrong");
@@ -41,7 +40,10 @@ export default function OffCanvas(props) {
       })
     }
   }
-
+  const closeToast=()=>{
+    setToast(false);
+    window.location.reload();
+  }
   return (
     <>
       <Offcanvas show={props.val} onHide={!props.val} placement={props.data.placement}>
@@ -102,6 +104,7 @@ export default function OffCanvas(props) {
             </form>)}
         </Offcanvas.Body>
       </Offcanvas>
+      <Toast value={toast} close={closeToast} message={props.data.delete ? "Task Deleted successfully" : "Task Edited Successfully"}/>
     </>
   );
 }
