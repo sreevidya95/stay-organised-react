@@ -7,6 +7,7 @@ import { useEffect, useState, useRef, useReducer } from "react";
 import { userGetData } from "./useGetData";
 import { Link, useParams } from "react-router-dom";
 import OffCanvas from "./Offcanvas";
+import { Tooltip } from 'react-tooltip'
 // import { Tooltip } from "react-bootstrap";
 export default function Home() {
   const [loading, setloading] = useState(false);
@@ -77,7 +78,6 @@ export default function Home() {
     gettodos(useId.id);
   }, [useId.id])
   const handleSearch = (search, type) => {
-    setclearFilter(true);
     if (type === 'search') {
       let t = todos.filter(d => d.description.toLowerCase().includes(search));
       settodo(t);
@@ -86,15 +86,18 @@ export default function Home() {
       }
     }
     else if (type === 'filter') {
+      setclearFilter(true);
       let t = search === true ? todos.filter(d => d.completed === true) : todos.filter(d => d.completed === false);
       console.log(t);
       settodo(t);
     }
     else if (type === "priority") {
+      setclearFilter(true);
       let t = todos.filter(d => d.priority === search);
       settodo(t);
     }
     else if (type === "cat") {
+      setclearFilter(true);
       let t = todos.filter(d => d.category === search);
       settodo(t);
     }
@@ -199,7 +202,10 @@ export default function Home() {
                               {clearFilter && <Link className="btn dropdown-item me-2 text-info text-decoration-underline" to="#" onClick={() => reset()}>ClearFilter</Link>}
                               <div className="dropdown dropend">
                                 <button type="button" className="btn btn-white dropdown-toggle" data-bs-toggle="dropdown">
-                                  <i className="fa fa-filter fs-2"></i>
+                                    <Tooltip anchorSelect=".fa-filter" place="top">
+                                        Filter tasks
+                                      </Tooltip>
+                                      <i className="fa fa-filter fs-2"></i>
                                 </button>
                                 <ul className="dropdown-menu">
                                   <li><h5 className="dropdown-header h4">Sort By Priority</h5></li>
@@ -230,6 +236,15 @@ export default function Home() {
                           )}
                         </tbody>
                       </table>
+                      <Tooltip anchorSelect=".fa-edit" place="top">
+                                       Edit Task
+                                      </Tooltip>
+                      <Tooltip anchorSelect=".fa-trash" place="top">
+                                       Delete Task
+                                      </Tooltip>
+                      <Tooltip anchorSelect=".fa-info-circle" place="top">
+                                       Details
+                                      </Tooltip>
                     </>
                   )}
               </div>

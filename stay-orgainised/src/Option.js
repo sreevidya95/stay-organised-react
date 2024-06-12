@@ -20,12 +20,12 @@ export function Option(props) {
                         <div className="card mt-5 mb-2">
                             <div className="card-body">
                                 <div className="card-title" style={{float:"right",marginTop:"-40px"}}>
-                                   {task && e.name === "Personal Task" ? <i className="fa fa-user-circle-o fs-1 text-white bgcolor p-1"></i> : e.name === "Household Task" ?
-                                        <i className="fa fa-home  fs-1 text-white bgcolor p-1" aria-hidden="true"></i> : e.name === "Financial Task" ? 
-                                        <i className="fa fa-bank  fs-1  text-white bgcolor p-1" aria-hidden="true"></i> : e.name === "Help Others" ? 
-                                        <i className="fa fa-handshake-o  fs-1 text-white bgcolor p-1"></i>:
-                                            e.name === "Errand" ? <i className="fa fa-shopping-cart fs-1 text-white bgcolor p-1" aria-hidden="true"></i> : 
-                                            <i className="fa fa-briefcase fs-1 text-white bgcolor p-1" aria-hidden="true"></i>}
+                                   {task && e.name === "Personal Task" ? <i className="fa fa-user-circle-o fs-1 text-white bgcolor p-1" style={{cursor:"default"}}></i> : e.name === "Household Task" ?
+                                        <i className="fa fa-home  fs-1 text-white bgcolor p-1" aria-hidden="true" style={{cursor:"default"}}></i> : e.name === "Financial Task" ? 
+                                        <i className="fa fa-bank  fs-1  text-white bgcolor p-1" aria-hidden="true" style={{cursor:"default"}}></i> : e.name === "Help Others" ? 
+                                        <i className="fa fa-handshake-o  fs-1 text-white bgcolor p-1" style={{cursor:"default"}}></i>:
+                                            e.name === "Errand" ? <i className="fa fa-shopping-cart fs-1 text-white bgcolor p-1" style={{cursor:"default"}} aria-hidden="true"></i> : 
+                                            <i className="fa fa-briefcase fs-1 text-white bgcolor p-1" style={{cursor:"default"}} aria-hidden="true"></i>}
                                 </div>
                                 <span className="badge bgcolor rounded-5" style={{ float: "left" }}>
                                     {task && e.name === "Personal Task" ? task.pt : e.name === "Household Task" ?

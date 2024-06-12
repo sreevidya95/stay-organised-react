@@ -14,10 +14,24 @@ function App() {
   const[pwdreveal,setPwdreveal]=useState(false);
   const navigate=useNavigate();
   useEffect(()=>{
-    if(localStorage.getItem('name')!== undefined &&localStorage.getItem('name')!== null && localStorage.getItem('name')!== ""){
-           navigate(`/Home/${localStorage.getItem('id')}`);  
+    if(window.location.pathname.includes("signup")){
+      handleSignUp();
+    }
+    else{
+      if(localStorage.getItem('name')!== undefined &&localStorage.getItem('name')!== null && localStorage.getItem('name')!== ""){
+        navigate(`/Home/${localStorage.getItem('id')}`);  
+    }
+         
     }
   },[]);
+  function handleSignUp(){
+    setSignUp(true);
+    setSignin(false);
+  }
+  const getSignInPage= ()=>{
+    setSignin(true);
+    setSignUp(false);
+  }
   function handleChange(e){
     if(e.target.checked){
       e.target.value=true
@@ -38,6 +52,16 @@ function App() {
         for (const [key, value] of Object.entries(users)) {
             if(value.username===data.uname && value.password===data.pwd){
               setloading(false);
+              if(window.location.pathname.includes("signup")){
+                if(localStorage.getItem('name')!== undefined &&localStorage.getItem('name')!== null && localStorage.getItem('name')!== ""){
+                  localStorage.removeItem("id");
+                  localStorage.removeItem("name");
+                  localStorage.removeItem('userName');
+                }
+                else{
+                  sessionStorage.clear();
+                }
+              }
               if(data.remme){
                   localStorage.setItem("id",value.id);
                   localStorage.setItem("name",value.name);
@@ -78,7 +102,7 @@ function App() {
               <span className="sr-only">Loading...</span>
             </div>
           </div>)}
-         {signIn &&(<div className="container">
+         {signIn ? (<div className="container">
             <div className="row">
                  <div className={`col-md-6 log ${isMobile ? "w3-animate-bottom":"w3-animate-right"}`}>
                  <div className="row">
@@ -111,12 +135,12 @@ function App() {
                       <h1 className="caveat-brush-regular display-4 ac" id="title">Listopia</h1>
                       <p  className="cookie-regular mt-3"> Listopia helps you stay organized and productive through out the day</p>
                         <p className="col-6 offset-3 text-light text-center fw-bold">Dont have an account?</p>
-                        <button value="Sign Up" onClick={()=>setSignUp(true)} className='btn rounded-5 mt-1 col-4 offset-4 button text-light fw-bold'><span>SignUp</span></button>
+                        <button value="Sign Up" onClick={()=>handleSignUp()} className='btn rounded-5 mt-1 col-4 offset-4 button text-light fw-bold'><span>SignUp</span></button>
                     </div>
                     </div>
             </div>
-        </div>)}
-        <CSSTransition
+        </div>)
+        : <CSSTransition
             in={signup}
             unmountOnExit
             appear
@@ -132,13 +156,13 @@ function App() {
                     <h1 className="caveat-brush-regular display-4 ac" id="title">Listopia</h1>
                     <p  className="cookie-regular mt-3"> Listopia helps you stay organized and productive through out the day</p>
                       <p className="col-6 offset-3 text-light text-center fw-bold">Already have an account?</p>
-                      <button value="Sign Up" onClick={()=>setSignUp(false)} className='btn rounded-5 mt-1 col-4 offset-4 button text-light fw-bold'><span>Login</span></button>
+                      <button value="Sign Up" onClick={()=>getSignInPage()} className='btn rounded-5 mt-1 col-4 offset-4 button text-light fw-bold'><span>Login</span></button>
                  </div>
                  </div>
-                <Signup/>
+                <Signup getSignInPage={getSignInPage}/>
           </div>
         </div>
-        </CSSTransition>
+        </CSSTransition>}
       </main>
     </div>
   );

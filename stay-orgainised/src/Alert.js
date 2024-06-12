@@ -6,8 +6,8 @@ export default function Alert(props){
       height:"20px !important",
     };
     return(
-        <div className="alert alert-primary w3-animate-opacity" style={style} role="alert">
-                       <spnan className=" text-center fw-bold text-primary">User added Successfully <span className="btn-close" style={{float:"right"}} onClick={click}></span></spnan>
+        <div className="alert alert-primary w3-animate-top" style={style} role="alert">
+                       <spnan className=" text-center fw-bold text-dark">{props.message} <span className="btn-close" style={{float:"right"}} onClick={click}></span></spnan>
                    </div>
     );
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Alert from "./Alert";
 import { userGetData, userSetData } from "./useGetData";
 import { isMobile } from "react-device-detect";
-export default function Signup() {
+export default function Signup(props) {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   const [isRevealresPwd, setIsresRevealPwd] = useState(false);
   const [data, setdata] = useState({ name: "", uname: "", pwd: "", respwd: "" });
@@ -16,6 +16,7 @@ export default function Signup() {
   // },[]);
   function handleAlert() {
     settoast(false);
+    props.getSignInPage();
   }
   function regUser(e) {
     e.preventDefault();
@@ -31,7 +32,7 @@ export default function Signup() {
         }
         else {
           let userData = {
-            "name": data.uname,
+            "name": data.name,
             "username": data.uname,
             "password": data.pwd
           };
@@ -85,7 +86,7 @@ export default function Signup() {
     <>
       <div className={`col-md-6 log ${isMobile ? "w3-animate-top" : "w3-animate-left"}`}>
         <div className="row">
-          {toast && (<Alert onClick={handleAlert} val={true} />)}
+          {toast && (<Alert onClick={handleAlert} val={true} message="User added Successfully"/>)}
           <div className="col-12 topStyle">
             <img src="./register.webp" class="col-2 img" alt="no" />
           </div>

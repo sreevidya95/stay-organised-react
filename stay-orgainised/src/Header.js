@@ -3,6 +3,7 @@ import { NavLink ,useNavigate} from "react-router-dom";
 import { Modal,Button } from "react-bootstrap";
 import { useState,useRef} from "react";
 import { Option } from "./Option";
+import { Tooltip } from 'react-tooltip'
 export default function Header(props){
    const[signout,setsignout]=useState(false);
    const[type,settype]=useState('');
@@ -29,6 +30,10 @@ export default function Header(props){
      settype('signin');
      setsignout(true);
    }
+   function del(){
+    settype('delete');
+    setsignout(true);
+  }
     return(
         <>
         <header>
@@ -87,11 +92,13 @@ export default function Header(props){
                                 </NavLink>
                             <div className="dropdown-menu col-2 offset-12" id="userMenu">
                                 <NavLink className="btn dropdown-item bg-white text-dark" onClick={out}>signOut</NavLink>
-                                <NavLink className="btn dropdown-item bg-white text-dark">Delete Account</NavLink>
+                                <NavLink className="btn dropdown-item bg-white text-dark" onClick={del}>Delete Account</NavLink>
                             </div>
                             </NavLink>
                         </nav>
-
+                        <Tooltip anchorSelect="#letter" place="left">
+                                       settings
+                                      </Tooltip>
                 </div>   
             </div>
         </header>
@@ -101,8 +108,9 @@ export default function Header(props){
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title className="text-center">{(type==='signin') ? "Sign Out" : "Delete"}</Modal.Title>
+          <span style={{float:"right"}} onClick={(()=>{setsignout(false)})} className="btn-close"></span>
         </Modal.Header>
         <Modal.Body>
         {(type==='signin') ? "Are you sure you really want to signout" : "Sorry, You dont have the permission to delete your account"}
